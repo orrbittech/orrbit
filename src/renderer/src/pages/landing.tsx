@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ChevronRight, Mail } from 'lucide-react'
 import { LandingDecor } from '@/components/landing-decor'
+import { PageLoader } from '@/components/page-loader'
 import { ProductFooter } from '@/components/product-footer'
 import { Button } from '@/components/ui/button'
 import { useGoogleSignIn } from '@/hooks/use-google-sign-in'
@@ -36,6 +37,12 @@ export function LandingPage() {
 
   return (
     <div className="light relative min-h-svh overflow-hidden bg-[radial-gradient(ellipse_at_center,_#ffffff_0%,_#f4f4f5_72%)] font-sans text-black">
+      {isPending ? (
+        <div className="fixed inset-0 z-50">
+          <PageLoader variant="light" label="Continuing with Google" />
+        </div>
+      ) : null}
+
       <LandingDecor />
 
       <Link
