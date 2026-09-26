@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { HandleSSOCallback, useAuth } from '@clerk/react'
 import { useNavigate } from 'react-router-dom'
+import { PageLoader } from '@/components/page-loader'
 import { finishSignedInNavigation } from '@/lib/auth-navigation'
+
+const SSO_NAVIGATION_FALLBACK_MS = 4000
 
 /** Completes Google OAuth after Clerk redirects back into the app, then lands on in-app home. */
 export function SSOCallbackPage() {
@@ -13,24 +16,27 @@ export function SSOCallbackPage() {
 
     const timer = window.setTimeout(() => {
       finishSignedInNavigation(navigate)
-    }, 4000)
+    }, SSO_NAVIGATION_FALLBACK_MS)
 
     return () => window.clearTimeout(timer)
   }, [isLoaded, isSignedIn, navigate])
 
   return (
-    <div className="light flex min-h-svh items-center justify-center bg-white font-sans [color-scheme:light]">
-      <HandleSSOCallback
-        navigateToApp={() => {
-          finishSignedInNavigation(navigate)
-        }}
-        navigateToSignIn={() => {
-          void navigate('/sign-in', { replace: true })
-        }}
-        navigateToSignUp={() => {
-          void navigate('/sign-up', { replace: true })
-        }}
-      />
+    <div className="relative min-h-svh">
+      <PageLoader variant="light" label="Completing sign in" />
+      <div className="hidden">
+        <HandleSSOCallback
+          navigateToApp={() => {
+            finishSignedInNavigation(navigate)
+          }}
+          navigateToSignIn={() => {
+            void navigate('/sign-in', { replace: true })
+          }}
+          navigateToSignUp={() => {
+            void navigate('/sign-up', { replace: true })
+          }}
+        />
+      </div>
     </div>
   )
 }

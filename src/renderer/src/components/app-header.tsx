@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useClerk, useUser } from '@clerk/react'
 import { useNavigate } from 'react-router-dom'
 import { LayoutDashboard, Power } from 'lucide-react'
+import { LoaderMark } from '@/components/page-loader'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
@@ -113,7 +114,10 @@ export function AppHeader() {
           overlayClassName="z-[9999]"
           className="z-[9999] flex min-w-[280px] max-w-[calc(100%-2rem)] items-center justify-center rounded-lg border-0 bg-background px-8 py-6 text-center text-foreground shadow-xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
-          <DialogTitle className="text-lg font-medium text-foreground">Signing you out</DialogTitle>
+          <div className="flex flex-col items-center gap-4">
+            <LoaderMark className="text-foreground" />
+            <DialogTitle className="text-lg font-medium text-foreground">Signing you out</DialogTitle>
+          </div>
         </DialogContent>
       </Dialog>
     </header>
