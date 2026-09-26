@@ -25,6 +25,7 @@ document.title = APP_NAME
 function isGuestAuthPath(pathname: string) {
   return (
     pathname === '/' ||
+    pathname === '/welcome' ||
     pathname.startsWith('/sign-in') ||
     pathname.startsWith('/sign-up') ||
     pathname.startsWith(SSO_CALLBACK_PATH)
