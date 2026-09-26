@@ -7,7 +7,7 @@ export function HomePage() {
     <div className="relative flex min-h-full flex-1 flex-col bg-background font-sans text-foreground">
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-16">
         <h1 className="text-center text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Welcome to our app
+          Welcome
         </h1>
         <a
           href={APP_URL}
