@@ -23,7 +23,7 @@ export function SSOCallbackPage() {
 
   return (
     <div className="relative min-h-svh">
-      <PageLoader variant="light" label="Completing sign in" />
+      <PageLoader variant="app" label="Completing sign in" />
       <div className="hidden">
         <HandleSSOCallback
           navigateToApp={() => {

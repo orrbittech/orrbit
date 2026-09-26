@@ -31,15 +31,15 @@ function GoogleMark() {
   )
 }
 
-/** Unsigned home: Welcome headline, Google / email CTAs, and Orrbit attribution. */
+/** Welcome screen at `/welcome`: Google / email CTAs and product attribution. */
 export function LandingPage() {
   const { continueWithGoogle, isPending, isLoaded, errorMessage } = useGoogleSignIn()
 
   return (
-    <div className="light relative min-h-svh overflow-hidden bg-[radial-gradient(ellipse_at_center,_#ffffff_0%,_#f4f4f5_72%)] font-sans text-black">
+    <div className="relative min-h-svh overflow-hidden bg-background bg-[radial-gradient(ellipse_at_center,_#ffffff_0%,_#f4f4f5_72%)] font-sans text-foreground dark:bg-[radial-gradient(ellipse_at_center,_#171717_0%,_#0a0a0a_72%)]">
       {isPending ? (
         <div className="fixed inset-0 z-50">
-          <PageLoader variant="light" label="Continuing with Google" />
+          <PageLoader variant="app" label="Continuing with Google" />
         </div>
       ) : null}
 
@@ -47,7 +47,7 @@ export function LandingPage() {
 
       <Link
         to="/sign-in"
-        className="absolute right-5 top-5 z-20 inline-flex items-center gap-1 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+        className="absolute right-5 top-5 z-20 inline-flex items-center gap-1 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
       >
         Sign In
         <ChevronRight className="size-4" />
@@ -55,7 +55,7 @@ export function LandingPage() {
 
       <div className="relative z-10 flex min-h-svh flex-col items-center justify-center px-4 py-20">
         <div className="flex w-full max-w-md flex-col items-center text-center">
-          <h1 className="text-5xl font-semibold leading-[1.1] tracking-tight text-black sm:text-6xl">
+          <h1 className="text-5xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-6xl">
             Welcome
           </h1>
 
@@ -65,7 +65,7 @@ export function LandingPage() {
               size="lg"
               disabled={!isLoaded || isPending}
               onClick={() => void continueWithGoogle()}
-              className="h-12 w-full rounded-full bg-black text-base font-medium text-white hover:bg-neutral-800"
+              className="h-12 w-full rounded-full bg-foreground text-base font-medium text-background hover:bg-foreground/90"
             >
               <GoogleMark />
               {isPending ? 'Continuing…' : 'Continue with Google'}
@@ -75,7 +75,7 @@ export function LandingPage() {
               asChild
               size="lg"
               variant="secondary"
-              className="h-12 w-full rounded-full bg-neutral-200 text-base font-medium text-black hover:bg-neutral-300"
+              className="h-12 w-full rounded-full text-base font-medium"
             >
               <Link to="/sign-up">
                 <Mail className="size-5" />
@@ -85,16 +85,16 @@ export function LandingPage() {
           </div>
 
           {errorMessage ? (
-            <p className="mt-4 max-w-sm text-sm text-neutral-600">{errorMessage}</p>
+            <p className="mt-4 max-w-sm text-sm text-muted-foreground">{errorMessage}</p>
           ) : null}
 
-          <p className="mt-6 text-sm text-neutral-500">
+          <p className="mt-6 text-sm text-muted-foreground">
             By signing up, you agree to our{' '}
             <a
               href={APP_URL}
               target="_blank"
               rel="noreferrer"
-              className="underline underline-offset-2 hover:text-black"
+              className="underline underline-offset-2 hover:text-foreground"
             >
               Terms
             </a>{' '}
@@ -103,7 +103,7 @@ export function LandingPage() {
               href={APP_URL}
               target="_blank"
               rel="noreferrer"
-              className="underline underline-offset-2 hover:text-black"
+              className="underline underline-offset-2 hover:text-foreground"
             >
               Privacy
             </a>

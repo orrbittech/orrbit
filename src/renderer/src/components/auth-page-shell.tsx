@@ -5,8 +5,8 @@ import { ProductFooter } from '@/components/product-footer'
 
 /**
  * Full-page shell for auth routes.
- * Near-black canvas with a local light color-scheme so the Clerk card
- * stays black-on-white regardless of the app theme.
+ * Near-black canvas. The Clerk card sits in a local light island so inputs
+ * stay black-on-white regardless of the app theme.
  */
 export function AuthPageShell({
   children,
@@ -16,7 +16,7 @@ export function AuthPageShell({
   showBack?: boolean
 }) {
   return (
-    <div className="light relative min-h-svh w-full overflow-hidden bg-[#0a0a0a] font-sans [color-scheme:light]">
+    <div className="relative min-h-svh w-full overflow-hidden bg-[#0a0a0a] font-sans text-white">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_28%,rgba(255,255,255,0.08),transparent_58%)]"
         aria-hidden
@@ -31,7 +31,7 @@ export function AuthPageShell({
           Home
         </Link>
       )}
-      <div className="relative flex min-h-svh flex-col items-center justify-center px-4 py-8 pb-16">
+      <div className="light relative flex min-h-svh flex-col items-center justify-center px-4 py-8 pb-16 [color-scheme:light]">
         {children}
       </div>
       <div className="fixed inset-x-0 bottom-6 z-20 flex justify-center">
