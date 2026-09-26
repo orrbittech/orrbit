@@ -4,12 +4,12 @@ import { PageLoader, type PageLoaderVariant } from '@/components/page-loader'
 import { HOME_PATH } from '@/lib/nav-routes'
 
 /**
- * Dark canvas on Clerk auth screens; light on the Welcome landing.
+ * Dark canvas on Clerk auth screens. Onboarding and Welcome follow the app theme.
  * @param pathname Current React Router path.
  */
 function guestLoaderVariant(pathname: string): PageLoaderVariant {
   if (pathname.startsWith('/sign-in') || pathname.startsWith('/sign-up')) return 'dark'
-  return 'light'
+  return 'app'
 }
 
 /** Signed-in only: unsigned users are sent to the Welcome landing. */
@@ -24,7 +24,7 @@ export function ProtectedRoute() {
   return <Outlet />
 }
 
-/** Unsigned only: signed-in users are sent into the app home. */
+/** Unsigned only: signed-in users are sent into the app home. Guests stay on onboarding or auth. */
 export function GuestRoute() {
   const { isLoaded, isSignedIn } = useAuth()
   const { pathname } = useLocation()
@@ -44,7 +44,7 @@ export function GuestRoute() {
   return <Outlet />
 }
 
-/** Unknown paths: home when signed in, Welcome landing when not. */
+/** Unknown paths: home when signed in, onboarding when not. */
 export function AuthAwareFallback() {
   const { isLoaded, isSignedIn } = useAuth()
 

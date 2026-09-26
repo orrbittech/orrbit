@@ -25,7 +25,7 @@ export function LandingDecor() {
         <div
           key={id}
           className={cn(
-            'absolute flex items-center justify-center rounded-2xl border border-black/10 bg-white text-neutral-400 shadow-sm',
+            'absolute flex items-center justify-center rounded-2xl border border-border bg-card text-muted-foreground shadow-sm',
             className
           )}
         >

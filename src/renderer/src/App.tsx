@@ -3,6 +3,7 @@ import { AppShell } from '@/components/app-shell'
 import { AuthAwareFallback, GuestRoute, ProtectedRoute } from '@/components/route-guards'
 import { HomePage } from '@/pages/home'
 import { LandingPage } from '@/pages/landing'
+import { OnboardingPage } from '@/pages/onboarding'
 import { SettingsPage } from '@/pages/settings'
 import { SignInPage } from '@/pages/sign-in'
 import { SignUpPage } from '@/pages/sign-up'
@@ -19,7 +20,8 @@ export default function App() {
     <Routes>
       <Route path={SSO_CALLBACK_PATH} element={<SSOCallbackPage />} />
       <Route element={<GuestRoute />}>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<OnboardingPage />} />
+        <Route path="/welcome" element={<LandingPage />} />
         <Route path="/sign-in/*" element={<SignInPage />} />
         <Route path="/sign-up/*" element={<SignUpPage />} />
       </Route>
